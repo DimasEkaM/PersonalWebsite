@@ -1,0 +1,68 @@
+import type { Certificate } from "@/types";
+
+export const certificates: Certificate[] = [
+  {
+    id: "solids",
+    title: "Belajar Prinsip Pemrograman SOLID",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/EYX4O7E86XDL",
+    category: "Architecture",
+    order: 0,
+  },
+  {
+    id: "backend-fundamental",
+    title: "Belajar Fundamental Back-End dengan JavaScript",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/4EXGV7D5EXRL",
+    category: "Backend",
+    order: 1,
+  },
+  {
+    id: "backend-beginner",
+    title: "Belajar Back-End Pemula dengan JavaScript",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/KEXLYV87WZG2",
+    category: "Backend",
+    order: 2,
+  },
+  {
+    id: "frontend-beginner",
+    title: "Belajar Membuat Front-End Web untuk Pemula",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/0LZ0JDR3QX65",
+    category: "Frontend",
+    order: 3,
+  },
+  {
+    id: "aws-cloud",
+    title: "Belajar Dasar Cloud dan Gen AI di AWS",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/N9ZOYLRGYPG5",
+    category: "Cloud",
+    order: 4,
+  },
+  {
+    id: "js-basic",
+    title: "Belajar Dasar Pemrograman JavaScript",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/0LZ04JKDQP65",
+    category: "Frontend",
+    order: 5,
+  },
+  {
+    id: "web-basic",
+    title: "Belajar Dasar Pemrograman Web",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/KEXLM33JYZG2",
+    category: "Frontend",
+    order: 6,
+  },
+  {
+    id: "ai-basic",
+    title: "Belajar Dasar AI",
+    issuer: "Dicoding",
+    url: "https://www.dicoding.com/certificates/81P24JE78ZOY",
+    category: "AI",
+    order: 7,
+  },
+];
