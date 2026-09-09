@@ -14,5 +14,5 @@ export const profile: Profile = {
   github: "https://github.com/DimasEkaM",
   availability: "open",
   photo: "/images/profile.jpg",
-  resumePdf: "/Resume_&_Portofolio_DimasEkaMahendraK_September2026.pdf",
+  resumePdf: "https://drive.google.com/file/d/1Nj5ZbLl5rWJeYLl-gYRHlB3FLsVqNxbe/view?usp=sharing",
 };
