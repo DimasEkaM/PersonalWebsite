@@ -1,12 +1,12 @@
 import type { Profile } from "@/types";
 
 export const profile: Profile = {
-  name: "Dimas Eka Mahendra .K",
+  name: "Dimas Eka Mahendra Karsoma",
   title: "Fullstack Engineer",
   shortSummary:
-    "Result-driven Fullstack Engineer with 7+ years of experience building scalable web and mobile applications across financial tech, mortgage, insurance, e-commerce, and enterprise environments.",
+    "Result-driven Fullstack Engineer with 7+ years of experience building scalable web and mobile applications across financial tech, banking, insurance, e-commerce, and enterprise environments.",
   longBio:
-    "I am a Fullstack Engineer with 7+ years of experience building scalable web and mobile applications across financial tech, mortgage, insurance, e-commerce, and enterprise environments. I have contributed to core digital products at PT Asuransi Jiwa Astra (Astra Life) through PT IBM Delivery Indonesia and PT Vajiro Mulia Gemilang.\n\nMy expertise spans React.js, Next.js, Vue.js, AngularJS, and Flutter, paired with a solid foundation in backend integration. I have a proven track record of delivering high-impact features, improving UI/UX performance, and collaborating with cross-functional teams in fast-paced agile projects.",
+    "I am a Fullstack Engineer with 7+ years of experience building scalable web and mobile applications across financial tech, banking, insurance, e-commerce, and enterprise environments. I have contributed to core digital products at PT Asuransi Jiwa Astra (Astra Life) through PT IBM Delivery Indonesia and PT Vajiro Mulia Gemilang.\n\nMy expertise spans React.js, Next.js, Vue.js, AngularJS, and Flutter, paired with a solid foundation in backend integration. I have a proven track record of delivering high-impact features, improving UI/UX performance, and collaborating with cross-functional teams in fast-paced agile projects.",
   location: "Depok, Jawa Barat, Indonesia",
   phone: "+62 857 9366 4802",
   email: "mahendradimas21@gmail.com",
