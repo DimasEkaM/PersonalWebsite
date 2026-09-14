@@ -3,10 +3,10 @@ import type { Experience } from "@/types";
 export const experiences: Experience[] = [
   {
     id: "astra-life",
-    company: "PT. IBM Delivery Indonesia & PT.Vajiro Mulia Gemilang",
-    companyShort: "IBM Delivery / Vajiro",
+    company: "PT IBM Delivery Indonesia & PT Vajiro Mulia Gemilang",
+    companyShort: "PT IBM Delivery Indonesia & PT Vajiro Mulia Gemilang",
     location: "Onsite at PT Asuransi Jiwa Astra",
-    role: "Application Developer",
+    role: "Fullstack Developer",
     startDate: "2024-09",
     endDate: "2026-08",
     bullets: [
@@ -19,8 +19,8 @@ export const experiences: Experience[] = [
   },
   {
     id: "briit",
-    company: "PT. Bringin Inti Teknologi / BRIIT",
-    companyShort: "BRIIT",
+    company: "PT Bringin Inti Teknologi",
+    companyShort: "PT Bringin Inti Teknologi",
     location: "Intiland Tower Jakarta Pusat",
     role: "Middle Frontend Engineer",
     startDate: "2022-08",
@@ -36,8 +36,8 @@ export const experiences: Experience[] = [
   },
   {
     id: "sign-house",
-    company: "PT Bisnis Integrasi Global (Sign House)",
-    companyShort: "Sign House",
+    company: "PT Bisnis Integrasi Global",
+    companyShort: "PT Bisnis Integrasi Global",
     location: "Jakarta Selatan",
     role: "Web Developer",
     startDate: "2021-04",
@@ -54,7 +54,7 @@ export const experiences: Experience[] = [
   {
     id: "atap-teduh",
     company: "PT Atap Teduh Lestari",
-    companyShort: "Atap Teduh Lestari",
+    companyShort: "PT Atap Teduh Lestari",
     location: "Jakarta Timur",
     role: "IT Staff",
     startDate: "2017-03",

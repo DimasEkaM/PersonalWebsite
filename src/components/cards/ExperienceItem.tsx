@@ -1,10 +1,13 @@
 import type { Experience } from "@/types";
+import { SkillBadge } from "@/components/ui/SkillBadge";
 
 interface ExperienceItemProps {
   experience: Experience;
+  index?: string;
 }
 
 function formatDate(date: string) {
+  if (date === "Present") return "Present";
   const [year, month] = date.split("-");
   const monthNames = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -14,56 +17,51 @@ function formatDate(date: string) {
   return `${m} ${year}`;
 }
 
-export function ExperienceItem({ experience }: ExperienceItemProps) {
+export function ExperienceItem({ experience, index }: ExperienceItemProps) {
   return (
-    <div className="relative border-l-2 border-zinc-200 pb-10 pl-6 last:pb-0 dark:border-zinc-800">
-      <span
-        className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-indigo-600"
-        aria-hidden="true"
-      />
-      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-          {experience.role}
-        </h3>
-        <span className="text-sm font-medium text-indigo-600">
-          {experience.company}
-        </span>
+    <div className="grid gap-4 border-t border-line py-8 sm:grid-cols-12">
+      <div className="sm:col-span-4 sm:pr-8">
+        {index ? (
+          <span className="font-serif italic text-accent-deep">{index}</span>
+        ) : null}
+        <p className="mt-1 text-sm text-muted">
+          {formatDate(experience.startDate)} ·{" "}
+          {formatDate(experience.endDate)}
+        </p>
+        {experience.location ? (
+          <p className="mt-1 text-sm text-muted">{experience.location}</p>
+        ) : null}
       </div>
 
-      <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-        {formatDate(experience.startDate)} —{" "}
-        {experience.endDate === "Present"
-          ? "Present"
-          : formatDate(experience.endDate)}
-        {experience.location ? ` · ${experience.location}` : ""}
-      </p>
-
-      <ul className="mt-4 space-y-2">
-        {experience.bullets.map((bullet) => (
-          <li
-            key={bullet}
-            className="flex gap-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"
-          >
-            <span className="mt-0.5 select-none text-indigo-600" aria-hidden="true">
-              ▸
-            </span>
-            {bullet}
-          </li>
-        ))}
-      </ul>
-
-      {experience.tech && experience.tech.length > 0 ? (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {experience.tech.map((tech) => (
-            <span
-              key={tech}
-              className="font-mono text-xs text-zinc-500 dark:text-zinc-400"
-            >
-              {tech}
-            </span>
-          ))}
+      <div className="sm:col-span-8">
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h3 className="font-serif text-xl font-medium text-ink">
+            {experience.role}
+          </h3>
+          <span className="text-sm font-medium text-accent-deep">
+            {experience.companyShort ?? experience.company}
+          </span>
         </div>
-      ) : null}
+
+        <ul className="mt-4 list-disc space-y-2 pl-4 marker:text-accent">
+          {experience.bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="text-sm leading-relaxed text-muted"
+            >
+              {bullet}
+            </li>
+          ))}
+        </ul>
+
+        {experience.tech && experience.tech.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {experience.tech.map((tech) => (
+              <SkillBadge key={tech} name={tech} />
+            ))}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {Button} from "@/components/ui/Button";
 
 export const metadata: Metadata = {
     title: "About",
-    description: "About Dimas Eka Mahendra — Fullstack Engineer from Indonesia.",
+    description: "About Dimas Eka Mahendra, Fullstack Engineer from Indonesia.",
 };
 
 export default function AboutPage() {
@@ -21,48 +21,40 @@ export default function AboutPage() {
                 <div className="grid gap-12 lg:grid-cols-2">
                     <div className="space-y-4">
                         {profile.longBio.split("\n\n").map((paragraph, index) => (
-                            <p key={index} className="leading-relaxed text-zinc-600 dark:text-zinc-300">
+                            <p key={index} className="leading-relaxed text-muted">
                                 {paragraph}
                             </p>
                         ))}
 
                         <div className="mt-6 flex flex-wrap gap-4">
-                            <Button href="/portfolio">View Portfolio</Button>
+                            <Button href="/portfolio">See the work</Button>
                             <Button href="/contact" variant="secondary">
-                                Contact Me
+                                Get in touch
                             </Button>
                         </div>
                     </div>
 
                     <div>
-                        <h2 className="mb-6 text-2xl font-bold text-zinc-900 dark:text-zinc-50">Education</h2>
-                        <div className="space-y-6">
+                        <h2 className="mb-6 font-serif text-2xl font-medium text-ink">
+                            Education
+                        </h2>
+                        <div className="border-t border-line">
                             {educations.map((education) => (
-                                <div
-                                    key={education.id}
-                                    className="rounded-xl border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
-                                >
-                                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                                <div key={education.id} className="border-b border-line py-6">
+                                    <h3 className="font-serif text-xl font-medium text-ink">
                                         {education.institution}
                                     </h3>
-                                    <p className="mt-1 text-sm font-medium text-indigo-600">{education.degree}</p>
-                                    <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                                        {education.startYear} — {education.endYear}
+                                    <p className="mt-1 text-sm font-medium text-accent-deep">
+                                        {education.degree}
+                                    </p>
+                                    <p className="mt-1 text-sm text-muted">
+                                        {education.startYear} to {education.endYear}
                                         {education.gpa ? ` · GPA ${education.gpa}` : ""}
                                     </p>
                                     {education.achievements ? (
-                                        <ul className="mt-4 space-y-2">
+                                        <ul className="mt-4 list-disc space-y-2 pl-4 marker:text-accent">
                                             {education.achievements.map((achievement) => (
-                                                <li
-                                                    key={achievement}
-                                                    className="flex gap-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"
-                                                >
-                                                    <span
-                                                        className="mt-0.5 select-none text-indigo-600"
-                                                        aria-hidden="true"
-                                                    >
-                                                        ▸
-                                                    </span>
+                                                <li key={achievement} className="text-sm leading-relaxed text-muted">
                                                     {achievement}
                                                 </li>
                                             ))}

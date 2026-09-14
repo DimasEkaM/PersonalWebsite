@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Projects built by Dimas Eka Mahendra across insurance, mortgage, e-commerce, and enterprise applications.",
+    "Projects built by Dimas Eka Mahendra across insurance, banking, e-commerce, and enterprise applications.",
 };
 
 export default function PortfolioPage() {
@@ -31,7 +31,7 @@ export default function PortfolioPage() {
             if (items.length === 0) return null;
             return (
               <div key={category}>
-                <h2 className="mb-6 text-xl font-bold text-zinc-900 dark:text-zinc-50">
+                <h2 className="mb-6 font-serif text-2xl font-medium text-ink">
                   {categoryLabels[category]}
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

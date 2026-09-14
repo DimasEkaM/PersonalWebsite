@@ -7,7 +7,7 @@ export const educations: Education[] = [
     degree: "Bachelor of Informatics Engineering",
     field: "Informatics Engineering",
     startYear: 2012,
-    endYear: 2016,
+    endYear: 2017,
     gpa: 3.85,
     achievements: [
       "Participated in the University student orientation organizing committee as a medical division member in 2013.",

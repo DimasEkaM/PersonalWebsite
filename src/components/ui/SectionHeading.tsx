@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 interface SectionHeadingProps {
   title: string;
   subtitle?: string;
+  index?: string;
   align?: "left" | "center";
   className?: string;
 }
@@ -10,36 +11,46 @@ interface SectionHeadingProps {
 export function SectionHeading({
   title,
   subtitle,
+  index,
   align = "left",
   className,
 }: SectionHeadingProps) {
   return (
     <div
       className={cn(
-        "mb-10",
+        "mb-12",
         align === "center" && "text-center",
         className
       )}
     >
-      <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
-        {title}
-      </h2>
+      <div
+        className={cn(
+          "flex items-baseline gap-3",
+          align === "center" && "justify-center"
+        )}
+      >
+        {index ? (
+          <span
+            className="font-serif text-2xl italic text-accent-deep sm:text-3xl"
+            aria-hidden="true"
+          >
+            {index}
+          </span>
+        ) : null}
+        <h2 className="font-serif text-3xl font-medium tracking-tight text-ink sm:text-4xl md:text-5xl">
+          {title}
+        </h2>
+      </div>
       {subtitle ? (
         <p
           className={cn(
-            "mt-4 max-w-2xl text-lg text-zinc-600 dark:text-zinc-400",
+            "mt-4 max-w-2xl text-lg leading-relaxed text-muted",
             align === "center" && "mx-auto"
           )}
         >
           {subtitle}
         </p>
       ) : null}
-      <div
-        className={cn(
-          "mt-4 h-1 w-12 rounded-full bg-indigo-600",
-          align === "center" && "mx-auto"
-        )}
-      />
     </div>
   );
 }
