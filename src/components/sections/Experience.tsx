@@ -1,12 +1,16 @@
-import { experiences } from "@/data/experience";
+import { getExperiences } from "@/lib/api";
 import { ExperienceItem } from "@/components/cards/ExperienceItem";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionSkeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
 
 interface ExperienceProps {
   withSectionHeading?: boolean;
 }
 
-export function Experience({ withSectionHeading = true }: ExperienceProps) {
+async function ExperienceContent({ withSectionHeading }: ExperienceProps) {
+  const experiences = await getExperiences();
+
   return (
     <section className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -29,5 +33,13 @@ export function Experience({ withSectionHeading = true }: ExperienceProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+export function Experience({ withSectionHeading = true }: ExperienceProps) {
+  return (
+    <Suspense fallback={<SectionSkeleton />}>
+      <ExperienceContent withSectionHeading={withSectionHeading} />
+    </Suspense>
   );
 }

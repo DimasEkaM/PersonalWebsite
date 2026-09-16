@@ -1,20 +1,24 @@
-import Link from "next/link";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/lib/api";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionSkeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
+import Link from "next/link";
 
 interface ContactProps {
   withSectionHeading?: boolean;
 }
 
-const channels = [
-  { label: "GitHub", href: profile.github },
-  { label: "LinkedIn", href: profile.linkedIn },
-  ...(profile.resumePdf
-    ? [{ label: "Resume (PDF)", href: profile.resumePdf }]
-    : []),
-];
+async function ContactContent({ withSectionHeading }: ContactProps) {
+  const profile = await getProfile();
 
-export function Contact({ withSectionHeading = true }: ContactProps) {
+  const channels = [
+    { label: "GitHub", href: profile.github },
+    { label: "LinkedIn", href: profile.linkedIn },
+    ...(profile.resumePdf
+      ? [{ label: "Resume (PDF)", href: profile.resumePdf }]
+      : []),
+  ];
+
   return (
     <section className="border-t border-line py-20">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -59,5 +63,13 @@ export function Contact({ withSectionHeading = true }: ContactProps) {
         </nav>
       </div>
     </section>
+  );
+}
+
+export function Contact({ withSectionHeading = true }: ContactProps) {
+  return (
+    <Suspense fallback={<SectionSkeleton />}>
+      <ContactContent withSectionHeading={withSectionHeading} />
+    </Suspense>
   );
 }
