@@ -1,11 +1,36 @@
-import { skillCategories } from "@/data/skills";
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { getSkillCategories } from "@/lib/api";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SkillsSkeleton } from "@/components/ui/Skeleton";
 
 interface SkillsProps {
   withSectionHeading?: boolean;
 }
 
 export function Skills({ withSectionHeading = true }: SkillsProps) {
+  const {
+    data: skillCategories = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["skillCategories"],
+    queryFn: getSkillCategories,
+  });
+
+  if (isLoading) return <SkillsSkeleton />;
+
+  if (error) {
+    return (
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-muted">Failed to load skills.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

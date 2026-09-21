@@ -3,6 +3,7 @@ import {Fraunces, Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.css";
 import {Navbar} from "@/components/layout/Navbar";
 import {Footer} from "@/components/layout/Footer";
+import {QueryProvider} from "@/components/providers/QueryProvider";
 
 const fraunces = Fraunces({
     variable: "--font-fraunces",
@@ -58,9 +59,11 @@ export default function RootLayout({
                 <script dangerouslySetInnerHTML={{__html: themeInit}} />
             </head>
             <body className="flex min-h-screen flex-col bg-background text-foreground antialiased">
-                <Navbar />
-                <main className="flex-1">{children}</main>
-                <Footer />
+                <QueryProvider>
+                    <Navbar />
+                    <main className="flex-1">{children}</main>
+                    <Footer />
+                </QueryProvider>
             </body>
         </html>
     );

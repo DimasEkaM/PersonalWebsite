@@ -1,8 +1,13 @@
-import { projects } from "@/data/projects";
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import { getProjects } from "@/lib/api";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { SkillBadge } from "@/components/ui/SkillBadge";
+import { ProjectsSkeleton } from "@/components/ui/Skeleton";
+import { useState } from "react";
 
 interface ProjectsProps {
   showAll?: boolean;
@@ -11,15 +16,62 @@ interface ProjectsProps {
 const categoryLabel = (category: string) =>
   category.charAt(0).toUpperCase() + category.slice(1);
 
+const categories = ["all", "web", "mobile", "fullstack"] as const;
+
 export function Projects({ showAll = false }: ProjectsProps) {
-  const visible = showAll ? projects : projects.filter((p) => p.featured);
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const {
+    data: projects = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["projects"],
+    queryFn: getProjects,
+  });
+
+  if (isLoading) return <ProjectsSkeleton />;
+
+  if (error) {
+    return (
+      <section className="border-y border-line bg-tan py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-muted">Failed to load projects.</p>
+        </div>
+      </section>
+    );
+  }
+
+  const filtered =
+    activeCategory === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+
+  const visible = showAll ? filtered : filtered.filter((p) => p.featured);
 
   if (showAll) {
     return (
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {visible.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+      <div>
+        <div className="mb-8 flex flex-wrap gap-2">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`rounded-full px-4 py-2 text-sm transition-colors ${
+                activeCategory === cat
+                  ? "bg-accent text-white"
+                  : "bg-line text-muted hover:text-ink"
+              }`}
+            >
+              {categoryLabel(cat)}
+            </button>
+          ))}
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {visible.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     );
   }

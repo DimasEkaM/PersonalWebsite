@@ -1,5 +1,7 @@
-import { profile } from "@/data/profile";
+import { getProfile } from "@/lib/api";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionSkeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
 
 const stats = [
   { value: "7+", label: "Years experience" },
@@ -8,7 +10,9 @@ const stats = [
   { value: "3.85", label: "GPA" },
 ];
 
-export function About() {
+async function AboutContent() {
+  const profile = await getProfile();
+
   const contactRows = [
     { label: "Location", value: profile.location },
     { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
@@ -75,5 +79,13 @@ export function About() {
         </div>
       </div>
     </section>
+  );
+}
+
+export function About() {
+  return (
+    <Suspense fallback={<SectionSkeleton />}>
+      <AboutContent />
+    </Suspense>
   );
 }

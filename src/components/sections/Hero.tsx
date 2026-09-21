@@ -1,5 +1,7 @@
-import { profile } from "@/data/profile";
+import { getProfile } from "@/lib/api";
 import { Button } from "@/components/ui/Button";
+import { ProfileSkeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
 
 const facts = [
   { value: "7+", label: "years of experience" },
@@ -7,7 +9,9 @@ const facts = [
   { value: "9+", label: "shipped projects" },
 ];
 
-export function Hero() {
+async function HeroContent() {
+  const profile = await getProfile();
+
   return (
     <section className="border-b border-line">
       <div className="mx-auto flex min-h-[70vh] max-w-6xl flex-col items-start justify-center px-4 py-24 sm:px-6 lg:px-8">
@@ -71,5 +75,13 @@ export function Hero() {
         </dl>
       </div>
     </section>
+  );
+}
+
+export function Hero() {
+  return (
+    <Suspense fallback={<ProfileSkeleton />}>
+      <HeroContent />
+    </Suspense>
   );
 }

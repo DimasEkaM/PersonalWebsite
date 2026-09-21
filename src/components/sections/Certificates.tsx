@@ -1,12 +1,16 @@
-import Link from "next/link";
-import { certificates } from "@/data/certificates";
+import { getCertificates } from "@/lib/api";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SectionSkeleton } from "@/components/ui/Skeleton";
+import { Suspense } from "react";
+import Link from "next/link";
 
 interface CertificatesProps {
   withSectionHeading?: boolean;
 }
 
-export function Certificates({ withSectionHeading = true }: CertificatesProps) {
+async function CertificatesContent({ withSectionHeading }: CertificatesProps) {
+  const certificates = await getCertificates();
+
   return (
     <section className="border-t border-line py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -45,5 +49,13 @@ export function Certificates({ withSectionHeading = true }: CertificatesProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+export function Certificates({ withSectionHeading = true }: CertificatesProps) {
+  return (
+    <Suspense fallback={<SectionSkeleton />}>
+      <CertificatesContent withSectionHeading={withSectionHeading} />
+    </Suspense>
   );
 }
